@@ -1,5 +1,5 @@
-import clearDom from '../utils/clearDom';
 import renderToDOM from '../utils/renderToDom';
+import clearDom from '../utils/clearDom';
 
 const emptyAuthors = () => {
   const domString = '<h1>No Authors</h1>';
@@ -8,7 +8,7 @@ const emptyAuthors = () => {
 
 const showAuthors = (array) => {
   clearDom();
-
+  console.warn('Authors');
   const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-author-btn">Add An Author</button>';
 
   renderToDOM('#add-button', btnString);
@@ -30,6 +30,7 @@ const showAuthors = (array) => {
       </div>
     </div>
     `;
+    console.warn('Show Author');
   });
   renderToDOM('#author-store', domString);
 };
