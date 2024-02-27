@@ -6,12 +6,13 @@ const emptyBooks = () => {
   renderToDOM('#store', domString);
 };
 
-const showBooks = (array) => {
-  clearDom();
+const showBooks = (array, shouldClear = true) => {
+  if (shouldClear === true) {
+    clearDom();
 
-  const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-book-btn">Add A Book</button>';
-  renderToDOM('#add-button', btnString);
-
+    const btnString = '<button class="btn btn-success btn-lg mb-4" id="add-book-btn">Add A Book</button>';
+    renderToDOM('#add-button', btnString);
+  }
   let domString = '';
   array.forEach((item) => {
     domString += `
@@ -21,13 +22,13 @@ const showBooks = (array) => {
           <h5 class="card-title">${item.title}</h5>
             <p class="card-text bold">${item.sale ? `<span class="badge badge-info sale-badge"><i class="fa fa-bell" aria-hidden="true"></i> Sale</span> $${item.price}` : `$${item.price}`}</p>
             <hr>
-            <i class="btn btn-success fas fa-eye" id="view-book-btn--${item.firebaseKey}"></i>
+            <i class="btn btn-success fas fa-eye" id="view-book-btn--${item.firebaseKey}"></i><span id="view-book-btn--${item.firebaseKey}"></i>
             <i id="edit-book-btn--${item.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-            <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
+            <i id="delete-book-btn--${item.firebaseKey}" class="btn btn-danger"><span class="fa-trash-alt"</span></i>
         </div>
       </div>`;
   });
-  renderToDOM('#store', domString);
+  renderToDOM('#book-store', domString);
 };
 
 export { showBooks, emptyBooks };
