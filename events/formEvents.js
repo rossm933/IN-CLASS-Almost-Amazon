@@ -15,6 +15,7 @@ const formEvents = (uid) => {
         price: document.querySelector('#price').value,
         author_id: document.querySelector('#author_id').value,
         sale: document.querySelector('#sale').checked,
+        uid
       };
       createBook(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
@@ -48,6 +49,7 @@ const formEvents = (uid) => {
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
         favorite: document.querySelector('#favorite').checked,
+        uid
       };
       createAuthor(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };

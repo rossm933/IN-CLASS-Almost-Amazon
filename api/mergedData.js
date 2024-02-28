@@ -32,6 +32,7 @@ const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, rej
 const searchStore = async (searchValue, uid) => {
   const allBooks = await getBooks(uid);
   const allAuthors = await getAuthors(uid);
+
   const filteredBooks = await allBooks.filter((book) => (
     book.title.toLowerCase().includes(searchValue)
     || book.description.toLowerCase().includes(searchValue)
@@ -43,7 +44,8 @@ const searchStore = async (searchValue, uid) => {
     || author.last_name.toLowerCase().includes(searchValue)
     || author.email.toLowerCase().includes(searchValue)
   ));
-  return { authors: filteredAuthors, books: filteredBooks };
+
+  return { books: filteredBooks, authors: filteredAuthors };
 };
 export {
   getBookDetails, getAuthorDetails, deleteAuthorBooksRelationship, searchStore
