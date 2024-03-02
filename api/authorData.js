@@ -11,9 +11,16 @@ const getAuthors = (uid) => new Promise((resolve, reject) => {
     }
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      if (data) {
+        resolve(Object.values(data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch(reject);
 });
+
 // Get Favorite Author
 const getFavAuthor = (uid) => new Promise((resolve, reject) => {
   fetch(`${endpoint}/authors.json?orderBy="uid"&equalTo="${uid}"`, {
@@ -23,7 +30,10 @@ const getFavAuthor = (uid) => new Promise((resolve, reject) => {
     }
   })
     .then((response) => response.json())
-    .then((data) => resolve(Object.values(data)))
+    .then((data) => {
+      const favoriteA = Object.values(data).filter((item) => item.favorite);
+      resolve(favoriteA);
+    })
     .catch(reject);
 });
 // FIXME: CREATE AUTHOR

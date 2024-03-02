@@ -36,6 +36,7 @@ const navigationEvents = (uid) => {
       }
     });
   });
+  console.warn('uid in nav events', uid);
   // Favorite Authors
   document.querySelector('#fav-authors').addEventListener('click', () => {
     getFavAuthor(uid).then(showAuthors);
@@ -48,7 +49,7 @@ const navigationEvents = (uid) => {
       // MAKE A CALL TO THE API TO FILTER ON THE BOOKS
       // IF THE SEARCH DOESN'T RETURN ANYTHING, SHOW THE EMPTY STORE
       // OTHERWISE SHOW THE STORE
-      searchStore(searchValue).then(({ books, authors }) => {
+      searchStore(searchValue, uid).then(({ books, authors }) => {
         if (books.length > 0 || authors.length > 0) {
           clearDom();
           showAuthors(authors, false);
@@ -56,7 +57,7 @@ const navigationEvents = (uid) => {
         } else {
           clearDom();
           const domString = '<h1>No Results</h1>';
-          renderToDOM('#store', domString);
+          renderToDOM('#author-store', domString);
         }
       });
 
